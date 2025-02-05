@@ -1,12 +1,10 @@
-name: Linux Release
-permissions:
-  contents: write
+name: Build Go Binary
 
 on:
   push:
-    tags:
-      - '*'
-      - '!*-alpha*'
+    branches:
+      - main
+
 jobs:
   release:
     runs-on: ubuntu-latest

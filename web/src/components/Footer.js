@@ -18,29 +18,7 @@ const FooterBar = () => {
 
   const defaultFooter = (
     <div className='custom-footer'>
-      <a
-        href='https://github.com/Calcium-Ion/new-api'
-        target='_blank'
-        rel='noreferrer'
-      >
-        New API {import.meta.env.VITE_REACT_APP_VERSION}{' '}
-      </a>
-      {t('由')}{' '}
-      <a
-        href='https://github.com/Calcium-Ion'
-        target='_blank'
-        rel='noreferrer'
-      >
-        Calcium-Ion
-      </a>{' '}
-      {t('开发，基于')}{' '}
-      <a
-        href='https://github.com/songquanpeng/one-api'
-        target='_blank'
-        rel='noreferrer'
-      >
-        One API
-      </a>
+    <p>Kitty AI API</p>
     </div>
   );
 
