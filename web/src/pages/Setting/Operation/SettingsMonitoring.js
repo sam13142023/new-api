@@ -5,7 +5,7 @@ import {
   API,
   showError,
   showSuccess,
-  showWarning,
+  showWarning, verifyJSON
 } from '../../../helpers';
 import { useTranslation } from 'react-i18next';
 
@@ -17,6 +17,7 @@ export default function SettingsMonitoring(props) {
     QuotaRemindThreshold: '',
     AutomaticDisableChannelEnabled: false,
     AutomaticEnableChannelEnabled: false,
+    AutomaticDisableKeywords: '',
   });
   const refForm = useRef();
   const [inputsRow, setInputsRow] = useState(inputs);
@@ -77,9 +78,9 @@ export default function SettingsMonitoring(props) {
         >
           <Form.Section text={t('监控设置')}>
             <Row gutter={16}>
-              <Col span={8}>
+              <Col xs={24} sm={12} md={8} lg={8} xl={8}>
                 <Form.InputNumber
-                  label={t('最长响应时间')}
+                  label={t('测试所有渠道的最长响应时间')}
                   step={1}
                   min={0}
                   suffix={t('秒')}
@@ -94,7 +95,7 @@ export default function SettingsMonitoring(props) {
                   }
                 />
               </Col>
-              <Col span={8}>
+              <Col xs={24} sm={12} md={8} lg={8} xl={8}>
                 <Form.InputNumber
                   label={t('额度提醒阈值')}
                   step={1}
@@ -113,7 +114,7 @@ export default function SettingsMonitoring(props) {
               </Col>
             </Row>
             <Row gutter={16}>
-              <Col span={8}>
+              <Col xs={24} sm={12} md={8} lg={8} xl={8}>
                 <Form.Switch
                   field={'AutomaticDisableChannelEnabled'}
                   label={t('失败时自动禁用通道')}
@@ -128,7 +129,7 @@ export default function SettingsMonitoring(props) {
                   }}
                 />
               </Col>
-              <Col span={8}>
+              <Col xs={24} sm={12} md={8} lg={8} xl={8}>
                 <Form.Switch
                   field={'AutomaticEnableChannelEnabled'}
                   label={t('成功时自动启用通道')}
@@ -141,6 +142,18 @@ export default function SettingsMonitoring(props) {
                       AutomaticEnableChannelEnabled: value,
                     })
                   }
+                />
+              </Col>
+            </Row>
+            <Row gutter={16}>
+              <Col xs={24} sm={16}>
+                <Form.TextArea
+                  label={t('自动禁用关键词')}
+                  placeholder={t('一行一个，不区分大小写')}
+                  extraText={t('当上游通道返回错误中包含这些关键词时（不区分大小写），自动禁用通道')}
+                  field={'AutomaticDisableKeywords'}
+                  autosize={{ minRows: 6, maxRows: 12 }}
+                  onChange={(value) => setInputs({ ...inputs, AutomaticDisableKeywords: value })}
                 />
               </Col>
             </Row>
